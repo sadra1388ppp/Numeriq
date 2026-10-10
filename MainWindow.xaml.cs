@@ -57,9 +57,7 @@ public partial class MainWindow : Window
 
     private void SetBrushColor(string resourceKey, Color color)
     {
-        if (FindResource(resourceKey) is SolidColorBrush brush)
-        {
-            brush.Color = color;
-        }
+        // Replace the resource instead of mutating it, avoiding frozen-brush exceptions.
+        Resources[resourceKey] = new SolidColorBrush(color);
     }
 }
